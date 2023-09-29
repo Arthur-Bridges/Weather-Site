@@ -25,7 +25,6 @@
  var latitude = ;
  var longitude = ;
  var forcastEl = $("#forcast");
- weatherApi.splice();
 
  /*
  **logic**
