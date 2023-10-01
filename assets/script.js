@@ -19,20 +19,23 @@
 //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial
 
 //concatenate the url with geocode converts
- var weatherApi = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
- var mainWeatherApi = "api.openweathermap.org/data/2.5/forecast?lat=";
- var apiKey = "&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
- var latitude = ;
- var longitude = ;
- var forcastEl = $("#forcast");
+//var weatherApi = "api.openweathermap.org/data/2.5/forecast?lat=123.456&lon=789.012&appid=e5e982ab0563ab95346f7be60c1d2098&units=imperial";
+//var mainWeatherApi = "api.openweathermap.org/data/2.5/forecast?lat="; //"api.openweathermap.org/data/2.5/forecast?lat=";
+//var apiKey = "&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
+//  var latitude = ;
+//  var longitude = ;
+//var forcastEl = $("#forcast");
+var testApi = "http://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
 
  /*
  **logic**
-
  var requestUrl = mainWeatherApi + latitude + "&lon=" + longitude + apiKey;
 
  or 
-
+ 
+ convert the html list[i] to number(.toString()) then iterate through it.
+ 
+ 
  fetch (requestUrl).then(function(response){
 response.json();
  }).then(function (list) {
@@ -40,4 +43,20 @@ response.json();
         var
     }
  });
+
+ , {
+    method: "GET",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    credentials: "same-origin",
+    redirect: "follow"
+    }
   */
+ $(document).ready(function (){ 
+    fetch(testApi).then(function (response) {
+    return response.json();
+ }).then(function (data){
+    console.log(data);
+ })
+});
