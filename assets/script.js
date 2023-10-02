@@ -16,8 +16,8 @@ function getWeatherData (){
         });
     }
     
-    function getLocation(){
-    var cityUrl =  "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName +"&limit={limit}&appid=9dc3e6bd849515c45ff7f316e0a2987e";
+    function getLocation(cityName){
+    var cityUrl =  "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName +"&limit=5&appid=9dc3e6bd849515c45ff7f316e0a2987e";
     fetch(cityUrl).then(function (response) {
     return response.json();
     }).then(function (data){
@@ -53,7 +53,7 @@ function getWeatherData (){
     .weather[0] //is weather conditions
     */
    //Might not iterate through columns
-   //may use html instead of .text
+   //may use .html instead of .text
    function displayContent(content) {
     var col = $(".column");
     for (var i = 0; i < col.length; i++){
