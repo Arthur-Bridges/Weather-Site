@@ -21,14 +21,21 @@ function getWeatherData (cityName){
         return response.json();
     }).then(function (data){
         console.log(data);
+        var columnContent = data.list;
     });
 
     //Display Weather
     //basically append work
+    /*ITERATION FOR DAYS
+    CurrentDay = 0-7
+    Tomorrow = 8-15
+    Day3 = 16 - 23
+    Day4 = 24 - 31
+    Day5 = 32 - 39*/
     var col = $(".column");
     for (var i = 0; i < col.length; i++){
         var listE = $("<li>");
-        listE.text(data content goes here [i]);
+        listE.text(columnContent[i]);
         col[i].append(listE);
     }
 }
