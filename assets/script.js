@@ -34,9 +34,17 @@ function getWeatherData (cityName){
     Day5 = 32 - 39*/
     /*May place in a function to render content */
     //TODO will be appending conditions.
+
+    /* DOT NOTATION
+    .main is Temperature
+    .weather[0] //is weather conditions
+    */
     var col = $(".column");
     for (var i = 0; i < col.length; i++){
-        var listE = $("<li>");
+        var listE = $("<li>");//CITY NAME is data.city.name
+        var listE = $("<li>");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
+        var listE = $("<li>");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
+        var listE = $("<li>");// TEMP which is either data.list.main.temp or data.main.temp
         listE.text(columnContent[i]);
         col[i].append(listE);
     }
