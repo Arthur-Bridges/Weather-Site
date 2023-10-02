@@ -4,6 +4,22 @@ $(document).ready(function (){
 
 });
 
+function saveHistory(){
+    function displayHistory(){
+        var historyL = $("#historyList");
+        for (var i = 0; i < historyList.length; i++){
+            var listHistory = $("<li>").text(historyList[i]);
+            historyList.append(listHistory);
+        }
+    }
+    //TODO fill in getItem
+    var userHistory = JSON.parse(localStorage.getItem(""));
+    userHistory.push(cityName);
+    //TODO fill in
+    localStorage.setItem("", JSON.stringify());
+    displayHistory();
+}
+
 function getWeatherData (){
     //TODO: add container for city is searched and inserted within the url
     //getting Lat and Lon using GeocodeAPI
@@ -13,6 +29,7 @@ function getWeatherData (){
         searchBtn.on("click", function(){
             var cityName = searchC.val();
             getLocation(cityName);
+            saveHistory(cityName);
         });
     }
     
@@ -33,7 +50,7 @@ function getWeatherData (){
         return response.json();
     }).then(function (data){
         console.log(data);
-        var content = data.list;
+        var content = data;
         displayContent(content);
     });
 }
@@ -72,14 +89,11 @@ function getWeatherData (){
         col[i].append(listWindSpeed);
     }
 }
-function savedHistory(){
-
-}
 
 search();
 getLocation();
 getWeather();
 displayContent();
-savedHistory();
+saveHistory();
 }
 
