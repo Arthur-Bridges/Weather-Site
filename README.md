@@ -9,7 +9,7 @@ A webpage that allows you to get the forcast anywhere in the world
 N/A
 
 ##Usage
-Deployed website is here:
+Deployed website is here: https://arthur-bridges.github.io/Weather-Site/
 
 N/A
 

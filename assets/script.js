@@ -7,7 +7,7 @@ $(document).ready(function (){
 function getWeatherData (cityName){
     //TODO: add container for city is searched and inserted within the url
     //getting Lat and Lon using GeocodeAPI
-    var cityUrl =  "http://api.openweathermap.org/geo/1.0/direct?q=" +${city name}+"&limit={limit}&appid=9dc3e6bd849515c45ff7f316e0a2987e";
+    var cityUrl =  "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName +"&limit={limit}&appid=9dc3e6bd849515c45ff7f316e0a2987e";
     fetch(cityUrl).then(function (response) {
     return response.json();
     }).then(function (data){
@@ -25,6 +25,10 @@ function getWeatherData (cityName){
 
     //Display Weather
     //basically append work
-    var = $("#");
-
+    var col = $(".column");
+    for (var i = 0; i < col.length; i++){
+        var listE = $("<li>");
+        listE.text(data content goes here [i]);
+        col[i].append(listE);
+    }
 }
