@@ -49,6 +49,9 @@ function getWeatherData (cityName){
         listWeatherIcon.text(columnContent[i]);
         listWeatherCondition.text(columnContent[i]);
         listTemp.text(columnContent[i]);
-        col[i].append(listE);
+        col[i].append(listCityName);
+        col[i].append(listWeatherIcon);
+        col[i].append(listWeatherCondition);
+        col[i].append(listTemp);
     }
 }
