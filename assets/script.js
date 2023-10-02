@@ -51,9 +51,9 @@ function saveHistory(cityName){
         return response.json();
     }).then(function (data){
         console.log(data);
-        var content = data.list;
+        var contentData = data.list;
         
-        displayContent(content);
+        displayContent(contentData);
     });
 }
     //Display Weather
@@ -72,43 +72,26 @@ function saveHistory(cityName){
     .weather[0] //is weather conditions
     */
    //Might not iterate through columns
-   //may use .html instead of .text
+   //may use .html instead of .text 
    //issue with function below
-   function displayContent(content) {
+   function displayContent(contentData) {
     var col = $(".column");
     var nameI = $("#cityName");
-    var listCityName = $("<li>").html("City: " + content.name +"\n");//CITY NAME is data.city.name
+    var listCityName = $("<li>").html("City: " + contentData[0].name +"\n");//CITY NAME is data.city.name
     nameI.append(listCityName);
-    for(var i = 0; i < col.length && i < content.length; i++){
-        
-        var listWeatherIcon = $("<li>").text(content[i].weather[0].icon +"\n");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
-        var listWeatherCondition = $("<li>").text("Weather Condition " + content[i].weather[0].description +"\n");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
-        var listTemp = $("<li>").text("Temperature: " + Math.round(content[i].main.temp)+ "\n");// TEMP which is either data.list.main.temp or data.main.temp
-        var listHumidity = $("<li>").text("Humidity: " + content[i].main.humidity + "°\n");// HUMIDITY which is either data.list.main.humidity or data.main.humidity
-        var listWindSpeed = $("<li>").text("Wind Speed: " + content[i].wind.speed + "mph");// WIND SPEED which is either data.list.wind.speed or data.wind.speed
+    for(var i = 0; i < col.length && i < contentData.length; i++){
+        var content = contentData[i];
+        var listWeatherIcon = $("<li>").html(content.weather[0].icon +"\n");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
+        var listWeatherCondition = $("<li>").html("Weather Condition " + content.weather[0].description +"\n");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
+        var listTemp = $("<li>").html("Temperature: " + Math.round(content.main.temp)+ "°\n");// TEMP which is either data.list.main.temp or data.main.temp
+        var listHumidity = $("<li>").html("Humidity: " + content.main.humidity + "\n");// HUMIDITY which is either data.list.main.humidity or data.main.humidity
+        var listWindSpeed = $("<li>").html("Wind Speed: " + content.wind.speed + "mph");// WIND SPEED which is either data.list.wind.speed or data.wind.speed
         col[i].append(listWeatherIcon);
         col[i].append(listWeatherCondition);
         col[i].append(listTemp);
         col[i].append(listHumidity);
-        
         col[i].append(listWindSpeed);        
     }
-    // for (var i = 0; i < col.length; i++){
-
-    //     var listCityName = $("<li>").text("City: " + content.name +"\n");//CITY NAME is data.city.name
-    //     var listWeatherIcon = $("<li>").text(content.weather[0].icon +"\n");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
-    //     var listWeatherCondition = $("<li>").text("Weather Condition " + content.weather.description +"\n");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
-    //     var listTemp = $("<li>").text("Temperature: " + Math.round(content.main.temp)+ "\n");// TEMP which is either data.list.main.temp or data.main.temp
-    //     var listHumidity = $("<li>").text("Humidity: " + content.main.humidity + "°\n");// HUMIDITY which is either data.list.main.humidity or data.main.humidity
-    //     var listWindSpeed = $("<li>").text("Wind Speed: " + content.wind.speed + "mph");// WIND SPEED which is either data.list.wind.speed or data.wind.speed
-
-    //     col[i].append(listCityName);
-    //     col[i].append(listWeatherIcon);
-    //     col[i].append(listWeatherCondition);
-    //     col[i].append(listTemp);
-    //     col[i].append(listHumidity);
-    //     col[i].append(listWindSpeed);
-    // }
 }
 
 search();
