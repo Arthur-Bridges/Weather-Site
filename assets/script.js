@@ -32,6 +32,8 @@ function getWeatherData (cityName){
     Day3 = 16 - 23
     Day4 = 24 - 31
     Day5 = 32 - 39*/
+    /*May place in a function to render content */
+    //TODO will be appending conditions.
     var col = $(".column");
     for (var i = 0; i < col.length; i++){
         var listE = $("<li>");
