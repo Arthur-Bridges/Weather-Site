@@ -41,11 +41,14 @@ function getWeatherData (cityName){
     */
     var col = $(".column");
     for (var i = 0; i < col.length; i++){
-        var listE = $("<li>");//CITY NAME is data.city.name
-        var listE = $("<li>");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
-        var listE = $("<li>");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
-        var listE = $("<li>");// TEMP which is either data.list.main.temp or data.main.temp
-        listE.text(columnContent[i]);
+        var listCityName = $("<li>");//CITY NAME is data.city.name
+        var listWeatherIcon = $("<li>");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
+        var listWeatherCondition = $("<li>");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
+        var listTemp = $("<li>");// TEMP which is either data.list.main.temp or data.main.temp
+        listCityName.text(columnContent[i]);
+        listWeatherIcon.text(columnContent[i]);
+        listWeatherCondition.text(columnContent[i]);
+        listTemp.text(columnContent[i]);
         col[i].append(listE);
     }
 }
