@@ -1,62 +1,48 @@
-/** API's and 
- 1)WeatherApi = api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
- 2)GeoLocation Api = http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-
- SYNTAX
-
- Weather = https://openweathermap.org/forecast5#geo5
-
- GeoLocation = https://openweathermap.org/api/geocoding-api
- */
-
- //splice method that manipulates the weather api to find certain longitute and latitude;
- 
- /*Will have to use Geolocator api, get the lat and long from there
- then store it in a variable then concantenate that variable onto 
- the weatherApi's URL in the paticular spots.*/
- 
-//api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial
 
 //concatenate the url with geocode converts
+//2)GeoLocation Api = http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 //var weatherApi = "api.openweathermap.org/data/2.5/forecast?lat=123.456&lon=789.012&appid=e5e982ab0563ab95346f7be60c1d2098&units=imperial";
 //var mainWeatherApi = "api.openweathermap.org/data/2.5/forecast?lat="; //"api.openweathermap.org/data/2.5/forecast?lat=";
 //var apiKey = "&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
 //  var latitude = ;
 //  var longitude = ;
 //var forcastEl = $("#forcast");
-var testApi = "http://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
 
- /*
- **logic**
- var requestUrl = mainWeatherApi + latitude + "&lon=" + longitude + apiKey;
+//==========================================================================
+// var testApi = "http://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
 
- or 
- 
- convert the html list[i] to number(.toString()) then iterate through it.
- 
- 
- fetch (requestUrl).then(function(response){
-response.json();
- }).then(function (list) {
-    for (var i = 0; i < list.length; i++) {
-        var
-    }
- });
-
- , {
-    method: "GET",
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    credentials: "same-origin",
-    redirect: "follow"
-    }
-  */
- $(document).ready(function (){ 
-    fetch(testApi).then(function (response) {
-    return response.json();
- }).then(function (data){
-    console.log(data);
- })
+//  $(document).ready(function (){ 
+//     fetch(testApi).then(function (response) {
+//     return response.json();
+//  }).then(function (data){
+//     console.log(data);
+//  })
+// });
+//==========================================================================
+$(document).ready(function (){
+    getWeatherData();
 });
+function getWeatherData (cityName){
+        //TODO: add container for city is searched and inserted within the url
+    //getting Lat and Lon using GeocodeAPI
+    var cityUrl =  "http://api.openweathermap.org/geo/1.0/direct?q=" +${city name}+"&limit={limit}&appid=9dc3e6bd849515c45ff7f316e0a2987e";
+    fetch(cityUrl).then(function (response) {
+    return response.json();
+    }).then(function (data){
+    var lat = data[0].lat;
+    var lon = data[0].lon;
+    });
+    
+//getting Weather Data
+    var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?lat="+ lat +"&lon="+ lon +"&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
+    fetch(requestUrl).then(function (response) {
+        return response.json();
+    }).then(function (data){
+        console.log(data);
+    });
+
+    //Display Weather
+    //basically append work
+    var = $("#");
+
+}
