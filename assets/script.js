@@ -62,10 +62,7 @@ function saveHistory(cityName){
             $("#WindSpeed" + (i+1)).html("Wind Speed: " + content.list[i].wind.speed + "mph");
         }
         for(i = 0; i < 5; i++){
-            $("#img" + (i+1)).src = "https://openweathermap.org/img/wn/" + listWeatherIcon +".png";
-        }
-        for(i = 0; i < 5; i++){
-            $("#day" + (i+1)).text(week[checkDay(i)]);
+            $("img" + (i+1)).src = "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png";
         }
     }
 
