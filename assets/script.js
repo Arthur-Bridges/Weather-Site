@@ -1,21 +1,40 @@
 $(document).ready(function (){
     
     getWeatherData();
+    displayHistory();
 
 });
 
-function saveHistory(cityName){
-    function displayHistory(){
-       
-    }
-    //TODO fill in getItem
 
+function saveHistory(cityName) {
+   
+    var history = JSON.parse(localStorage.getItem("history")) || [];
+
+    history.push(cityName);
+
+    if (history.length > 5) {
+        history.shift(); 
+    }
+
+    localStorage.setItem("history", JSON.stringify(history));
     displayHistory();
 }
 
+function displayHistory() {
+    
+    var history = JSON.parse(localStorage.getItem("history")) || [];
+    var historyList = $("#historyList");
+
+    historyList.empty();
+
+    for (var i = 0; i < history.length; i++) {
+        var listItem = $("<li>").text(history[i]);
+        historyList.append(listItem);
+    }
+}
+
     function getWeatherData (){
-    //TODO: add container for city is searched and inserted within the url
-    //getting Lat and Lon using GeocodeAPI
+ 
     function search(){
         var searchC = $("#search input");
         var searchBtn = $("#search button");
@@ -62,81 +81,11 @@ function saveHistory(cityName){
             $("#Humidity" + (i+1)).html("Humidity: " + content.list[i].main.humidity + "%\n");
             $("#WindSpeed" + (i+1)).html("Wind Speed: " + content.list[i].wind.speed + "mph");
         }
-        // for(i = 0; i < 5; i++){
-        //     $("img" + (i+1)).src = "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png";
-        // }
-    }
-
-        
-        // function renderingIcon(){
-        // https://openweathermap.org/img/wn/10d@2x.png
-        //  if (listWeatherIcon == 01d || 01n) {
-            
-        //     if(listWeatherIcon == 01d){
-
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == 02d || 02n) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        //  else if (listWeatherIcon == ) {
-            
-        //     if(listWeatherIcon == 01d){
-                
-        //     }
-        //     https://openweathermap.org/img/wn/10d@2x.png
-        //  }
-        // }
-//     //------------------------------------------------
+        for(i = 0; i < 5; i++){
+            $("#img" + (i+1)).attr("src", "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png");
+        }
+   }
 
 search();
-saveHistory();
 }
 
