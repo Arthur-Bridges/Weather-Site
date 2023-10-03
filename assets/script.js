@@ -56,14 +56,15 @@ function saveHistory(cityName){
     nameI.append(listCityName);
         for(i = 0; i < 5; i++){
             // $(".column"+(i+1));
+            $("#img" + (i+1)).src = "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png";
             $("#temp" + (i+1)).html("Temp: " + Math.round(content.list[i].main.temp) + "°\n");
             $("#weatherDesc" + (i+1)).html("Weather Condition: " + content.list[i].weather[0].description +"\n");
             $("#Humidity" + (i+1)).html("Humidity: " + content.list[i].main.humidity + "%\n");
             $("#WindSpeed" + (i+1)).html("Wind Speed: " + content.list[i].wind.speed + "mph");
         }
-        for(i = 0; i < 5; i++){
-            $("img" + (i+1)).src = "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png";
-        }
+        // for(i = 0; i < 5; i++){
+        //     $("img" + (i+1)).src = "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png";
+        // }
     }
 
         
