@@ -6,17 +6,10 @@ $(document).ready(function (){
 
 function saveHistory(cityName){
     function displayHistory(){
-        var historyL = $("#historyList");
-        for (var i = 0; i < historyList.length; i++){
-            var listHistory = $("<li>").text(historyList[i]);
-            historyList.append(listHistory);
-        }
+       
     }
     //TODO fill in getItem
-    var userHistory = JSON.parse(localStorage.getItem(""));
-    userHistory.push(cityName);
-    //TODO fill in
-    localStorage.setItem("", JSON.stringify());
+
     displayHistory();
 }
 
@@ -45,54 +38,105 @@ function saveHistory(cityName){
     });
 }
 //getting Weather Data
-    async function getWeather(lat, lon){
+    function getWeather(lat, lon) {
     var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?lat="+ lat +"&lon="+ lon +"&appid=9dc3e6bd849515c45ff7f316e0a2987e&units=imperial";
     fetch(requestUrl).then(function (response) {
         return response.json();
     }).then(function (data){
+        console.log("---RAW DATA---");
         console.log(data);
-        var contentData = data.list;
-        
-        displayContent(contentData);
+        var content = data;
+        displayContent(content);
     });
 }
-    //Display Weather
-    //basically append work
-    /*ITERATION FOR DAYS
-    CurrentDay = 0-7
-    Tomorrow = 8-15
-    Day3 = 16 - 23
-    Day4 = 24 - 31
-    Day5 = 32 - 39*/
-    /*May place in a function to render content */
-    //TODO will be appending conditions.
-
-    /* DOT NOTATION
-    .main is Temperature
-    .weather[0] //is weather conditions
-    */
-   //Might not iterate through columns
-   //may use .html instead of .text 
-   //issue with function below
-   function displayContent(contentData) {
-    var col = $(".column");
+   function displayContent(content) {
+    var col = $(".column" );
     var nameI = $("#cityName");
-    var listCityName = $("<li>").html("City: " + contentData[0].name +"\n");//CITY NAME is data.city.name
+    var listCityName = content.city.name;//CITY NAME is data.city.name
     nameI.append(listCityName);
-    for(var i = 0; i < col.length && i < contentData.length; i++){
-        var content = contentData[i];
-        var listWeatherIcon = $("<li>").html(content.weather[0].icon +"\n");// WEATHER CONDITION ICON might be data.list.main.weather[i].icon or data.main.weather[i].icon
-        var listWeatherCondition = $("<li>").html("Weather Condition " + content.weather[0].description +"\n");// WEATHER CONDITION DESCRIPTION might be data.list.main.weather[i].description or data.main.weather[i].description
-        var listTemp = $("<li>").html("Temperature: " + Math.round(content.main.temp)+ "°\n");// TEMP which is either data.list.main.temp or data.main.temp
-        var listHumidity = $("<li>").html("Humidity: " + content.main.humidity + "\n");// HUMIDITY which is either data.list.main.humidity or data.main.humidity
-        var listWindSpeed = $("<li>").html("Wind Speed: " + content.wind.speed + "mph");// WIND SPEED which is either data.list.wind.speed or data.wind.speed
-        col[i].append(listWeatherIcon);
-        col[i].append(listWeatherCondition);
-        col[i].append(listTemp);
-        col[i].append(listHumidity);
-        col[i].append(listWindSpeed);        
+        for(i = 0; i < 5; i++){
+            // $(".column"+(i+1));
+            $("#temp" + (i+1)).html("Temp: " + Math.round(content.list[i].main.temp) + "°\n");
+            $("#weatherDesc" + (i+1)).html("Weather Condition: " + content.list[i].weather[0].description +"\n");
+            $("#Humidity" + (i+1)).html("Humidity: " + content.list[i].main.humidity + "%\n");
+            $("#WindSpeed" + (i+1)).html("Wind Speed: " + content.list[i].wind.speed + "mph");
+        }
+        for(i = 0; i < 5; i++){
+            $("#img" + (i+1)).src = "https://openweathermap.org/img/wn/" + listWeatherIcon +".png";
+        }
+        for(i = 0; i < 5; i++){
+            $("#day" + (i+1)).text(week[checkDay(i)]);
+        }
     }
-}
+
+        
+        // function renderingIcon(){
+        // https://openweathermap.org/img/wn/10d@2x.png
+        //  if (listWeatherIcon == 01d || 01n) {
+            
+        //     if(listWeatherIcon == 01d){
+
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == 02d || 02n) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        //  else if (listWeatherIcon == ) {
+            
+        //     if(listWeatherIcon == 01d){
+                
+        //     }
+        //     https://openweathermap.org/img/wn/10d@2x.png
+        //  }
+        // }
+//     //------------------------------------------------
 
 search();
 saveHistory();
