@@ -5,7 +5,6 @@ $(document).ready(function (){
 
 });
 
-
 function saveHistory(cityName) {
    
     var history = JSON.parse(localStorage.getItem("history")) || [];
@@ -62,20 +61,17 @@ function displayHistory() {
     fetch(requestUrl).then(function (response) {
         return response.json();
     }).then(function (data){
-        console.log("---RAW DATA---");
         console.log(data);
         var content = data;
         displayContent(content);
     });
 }
    function displayContent(content) {
-    var col = $(".column" );
     var nameI = $("#cityName");
-    var listCityName = content.city.name;//CITY NAME is data.city.name
+    var listCityName = content.city.name;
     nameI.append(listCityName);
         for(i = 0; i < 5; i++){
-            // $(".column"+(i+1));
-            $("#img" + (i+1)).src = "https://openweathermap.org/img/wn/" + content.list[i].weather[0].icon +"@2x.png";
+            $(".column" + (i+1));
             $("#temp" + (i+1)).html("Temp: " + Math.round(content.list[i].main.temp) + "°\n");
             $("#weatherDesc" + (i+1)).html("Weather Condition: " + content.list[i].weather[0].description +"\n");
             $("#Humidity" + (i+1)).html("Humidity: " + content.list[i].main.humidity + "%\n");
